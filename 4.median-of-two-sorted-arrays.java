@@ -16,12 +16,7 @@ class Solution {
         if (lengthNums1 == 0) {
             if (lengthNums2%2 == 0) return nums2[(lengthNums2/2 - 1)] * 0.5 + nums2[(lengthNums2/2)] * 0.5;
             else return (double) nums2[(lengthNums2-1)/2];
-        } 
-
-        if (lengthNums2 == 0) {
-            if (lengthNums1%2 == 0) return nums1[(lengthNums1/2 - 1)] * 0.5 + nums1[(lengthNums1/2)] * 0.5;
-            else return (double) nums1[(lengthNums1-1)/2];
-        } 
+        }
 
         int left = 0;
         int right = lengthNums1;
