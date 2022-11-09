@@ -1,3 +1,4 @@
+import java.security.DrbgParameters.Reseed;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,13 +18,11 @@ class Solution {
         HashMap<Character, Integer> subStringMap = new HashMap<>();
 
         while (right < s.length()) {
-            subStringMap.put(s.charAt(right), subStringMap.getOrDefault(s.charAt(right), 0) + 1);
-        
-            while (subStringMap.get(s.charAt(right)) > 1) {
-                subStringMap.put(s.charAt(left), subStringMap.get(s.charAt(left)) - 1);
-                left++;
+            if (subStringMap.containsKey(s.charAt(right))) {
+                left = Math.max(subStringMap.get(s.charAt(right)), left) ;
             }
 
+            subStringMap.put(s.charAt(right), right + 1);
             res = Math.max(res, right - left + 1);
             right++;
         }
