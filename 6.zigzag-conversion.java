@@ -38,9 +38,6 @@ class Solution {
                 gapTopDown -= 2;
                 gapBottomUp += 2;
             }
-
-
-
         }
 
         return res.toString();
