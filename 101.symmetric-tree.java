@@ -1,9 +1,11 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Queue;
 /*
  * @lc app=leetcode id=101 lang=java
  *
  * [101] Symmetric Tree
  */
-
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -22,14 +24,22 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        return root == null || isSymmetricRecursive(root.left, root.right);
+        if (root == null) return true;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.add(root.left);
+        q.add(root.right);
+        while(!q.isEmpty()) {
+            TreeNode nodeRight = q.poll();
+            TreeNode nodeLeft = q.poll();
+            if (nodeRight == null && nodeLeft == null) continue;
+            if (nodeRight == null || nodeLeft == null || nodeRight.val != nodeLeft.val) return false;
+            q.add(nodeLeft.left);
+            q.add(nodeRight.right);
+            q.add(nodeLeft.right);
+            q.add(nodeRight.left);
+        }
+        return true;
     }
-
-    private boolean isSymmetricRecursive(TreeNode left, TreeNode right) {
-        if (left == null || right == null) return left == right;
-        if (left.val != right.val) return false;
-        return isSymmetricRecursive(left.left, right.right) && isSymmetricRecursive(left.right, right.left);
-    } 
 }
 // @lc code=end
 
